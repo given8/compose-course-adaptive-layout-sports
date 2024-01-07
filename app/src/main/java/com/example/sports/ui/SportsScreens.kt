@@ -16,6 +16,7 @@
 
 package com.example.sports.ui
 
+import android.app.Activity
 import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
@@ -58,6 +59,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -364,6 +366,7 @@ fun SportsListAndDetails(
     contentPadding: PaddingValues,
     selectedSport: Sport
 ){
+    val activity = LocalContext.current as Activity
     Row(modifier = Modifier.padding(start = 10.dp, top = 10.dp)) {
         SportsList(
             sports = sports,
@@ -373,7 +376,7 @@ fun SportsListAndDetails(
         )
         SportsDetail(
             selectedSport = selectedSport,
-            onBackPressed = { /*TODO*/ },
+            onBackPressed = { activity.finish() },
             contentPadding = PaddingValues(start = 10.dp),
             modifier = Modifier.weight(2f))
     }
